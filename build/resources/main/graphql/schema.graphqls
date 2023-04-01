@@ -1,0 +1,7 @@
+type Query {
+    init: TestEntity
+}
+
+type TestEntity {
+val: Int
+}
