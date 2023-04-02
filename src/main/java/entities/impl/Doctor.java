@@ -5,15 +5,11 @@ import entities.Person;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.List;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 @Entity(name = "DOCTOR")
 public class Doctor extends Person implements Serializable {
 
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctor")
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctor", fetch = FetchType.EAGER)
   private List<Pet> patients;
 
   public Doctor() {}
@@ -32,5 +28,13 @@ public class Doctor extends Person implements Serializable {
         + super.getLastName()
         + " phone: "
         + super.getPhone();
+  }
+
+  public List<Pet> getPatients() {
+    return patients;
+  }
+
+  public void setPatients(List<Pet> patients) {
+    this.patients = patients;
   }
 }

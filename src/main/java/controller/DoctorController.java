@@ -1,19 +1,15 @@
 package controller;
 
 import entities.impl.Doctor;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
-import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
 import repositories.impl.DoctorDao;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class DoctorController {
@@ -22,7 +18,6 @@ public class DoctorController {
     private DoctorDao repository;
     private static final Logger log = LoggerFactory.getLogger(DoctorController.class);
 
-//    @SchemaMapping(typeName = "Mutation")
     @MutationMapping
     public boolean createDoctor(@Argument Integer id, @Argument String firstName, @Argument String lastName, @Argument Integer phone) {
         try{
@@ -30,14 +25,45 @@ public class DoctorController {
             repository.create(doctor);
             return true;
         } catch (Exception e) {
-            log.error("Unable to update the database", e);
+            log.error("Unable to create the doctor entity", e);
             return false;
         }
     }
 
     @QueryMapping
     public Doctor findDoctorById(@Argument int id) {
-        System.out.println(repository.findAll().get(0).toString());
         return  repository.findOne(id);
+    }
+
+    @MutationMapping
+    public boolean deleteDoctor(@Argument int id) {
+        try {
+            repository.deleteById(id);
+            return true;
+        } catch(Exception e) {
+            log.error("Unable to delete the doctor entity", e);
+            return false;
+        }
+    }
+
+    @MutationMapping
+    public boolean updateDoctor(@Argument Integer id, @Argument String firstName, @Argument String lastName, @Argument Integer phone){
+        try {
+            Doctor doctor = repository.findOne(id);
+            if(phone!=null) {
+                doctor.setPhone(phone);
+            }
+            if(firstName!=null) {
+                doctor.setFirstName(firstName);
+            }
+            if(lastName!=null) {
+                doctor.setLastName(lastName);
+            }
+            repository.update(doctor);
+            return true;
+        } catch(Exception e) {
+            log.error("Unable to update the doctor entity", e);
+            return false;
+        }
     }
 }

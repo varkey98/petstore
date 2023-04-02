@@ -44,5 +44,17 @@ public class Person {
     return id;
   }
 
+  public void setFirstName(String name) {
+    this.firstName = name;
+  }
+
+  public void setLastName(String name) {
+    this. lastName = name;
+  }
+
+  public void setPhone(int phone) {
+    this. phone = phone;
+  }
+
   public Person() {}
 }

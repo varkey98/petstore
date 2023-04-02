@@ -34,24 +34,26 @@ public abstract class AbstractHibernateDao<T extends  Serializable> {
         return ret;
     }
 
-    public T create(final T entity) {
+    public void create(final T entity) {
         Preconditions.checkNotNull(entity);
         Transaction transaction = getCurrentSession().beginTransaction();
         getCurrentSession().merge(entity);
-        T temp = (T) getCurrentSession().get(clazz, 1);
 //        sessionFactory.openSession().saveOrUpdate(entity);
         transaction.commit(); //either transaction or a new session every time
-        return temp;
     }
 
-    public T update(final T entity) {
+    public void update(final T entity) {
         Preconditions.checkNotNull(entity);
-        return (T) getCurrentSession().merge(entity);
+        Transaction transaction = getCurrentSession().beginTransaction();
+        getCurrentSession().merge(entity);
+        transaction.commit();
     }
 
     public void delete(final T entity) {
         Preconditions.checkNotNull(entity);
-        getCurrentSession().delete(entity);
+        Transaction transaction = getCurrentSession().beginTransaction();
+        getCurrentSession().remove(entity);
+        transaction.commit();
     }
 
     public void deleteById(final long entityId) {

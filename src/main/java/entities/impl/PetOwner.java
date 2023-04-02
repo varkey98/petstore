@@ -3,19 +3,25 @@ package entities.impl;
 
 import entities.Person;
 import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.util.List;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 @Entity(name = "PETOWNER")
-public class PetOwner extends Person {
+public class PetOwner extends Person implements Serializable {
 
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner", fetch = FetchType.EAGER)
   List<Pet> pets;
 
   public PetOwner() {}
+
+  public List<Pet> getPets() {
+    return pets;
+  }
+
+  public void setPets(List<Pet> pets) {
+    this.pets = pets;
+  }
 
   public PetOwner(int id, String firstName, String lastName, int phone, List<Pet> pets) {
     super(id, firstName, lastName, phone);
