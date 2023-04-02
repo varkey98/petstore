@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Person {
 
+  @Id
   @Column(unique = true, nullable = false)
   int id;
 
@@ -19,10 +20,6 @@ public class Person {
   @Column(nullable = false)
   int phone;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(unique = true, nullable = false)
-  int uid;
 
   public Person(int id, String firstName, String lastName, int phone) {
     this.firstName = firstName;
