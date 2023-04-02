@@ -1,44 +1,36 @@
 /* (C)2023 */
 package entities.impl;
 
+import entities.Person;
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.List;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@Entity(name="DOCTOR")
-public class Doctor implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true, nullable = false)
-    long id;
+@Entity(name = "DOCTOR")
+public class Doctor extends Person implements Serializable {
 
-    @Column(nullable = false)
-    String firstName;
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctor")
+  private List<Pet> patients;
 
-    @Column(nullable = false)
-    String lastName;
+  public Doctor() {}
 
-    @Column(nullable = false)
-    int phone;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctor")
-    private List<Pet> patients;
+  public Doctor(int id, String firstName, String lastName, int phone, List<Pet> patients) {
+    super(id, firstName, lastName, phone);
+    this.patients = patients;
+  }
 
-    public Doctor() {}
-
-    public Doctor(long id, String firstName, String lastName, int phone, List<Pet> patients) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phone = phone;
-        this.id = id;
-        this.patients = patients;
-    }
-
-    @Override
-    public String toString() {
-        return "id: " +id+" firstName: "+firstName+" lastName: "+lastName+" phone: "+ phone;
-    }
+  @Override
+  public String toString() {
+    return
+        " firstName: "
+        + super.getFirstName()
+        + " lastName: "
+        + super.getLastName()
+        + " phone: "
+        + super.getPhone();
+  }
 }

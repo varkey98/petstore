@@ -24,7 +24,7 @@ public class DoctorController {
 
 //    @SchemaMapping(typeName = "Mutation")
     @MutationMapping
-    public boolean createDoctor(@Argument Long id, @Argument String firstName, @Argument String lastName, @Argument Integer phone) {
+    public boolean createDoctor(@Argument Integer id, @Argument String firstName, @Argument String lastName, @Argument Integer phone) {
         try{
             Doctor doctor = new Doctor(id, firstName, lastName, phone, null);
             repository.create(doctor);
@@ -36,7 +36,8 @@ public class DoctorController {
     }
 
     @QueryMapping
-    public Doctor findDoctorById(@Argument Long id) {
+    public Doctor findDoctorById(@Argument int id) {
+        System.out.println(repository.findAll().get(0).toString());
         return  repository.findOne(id);
     }
 }
