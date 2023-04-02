@@ -1,7 +1,54 @@
-type Query {
-    init: TestEntity
+type Pet {
+    id: ID!
+    name: String!
+    doctor: Doctor
+    owner: PetOwner
 }
 
-type TestEntity {
-val: Int
+type PetOwner {
+    id: ID!
+    firstName: String!
+    lastName: String!
+    phone: Int!
+    pets: [Pet]
+}
+
+input PetOwnerInput {
+    id: ID!
+    firstName: String!
+    lastName: String!
+    phone: Int!
+}
+
+type Doctor {
+    id: ID!
+    firstName: String!
+    lastName: String!
+    phone: Int!
+    patients: [Pet]
+}
+
+input DoctorInput {
+    id: ID!
+    firstName: String!
+    lastName: String!
+    phone: Int!
+}
+
+type Query {
+    findPetById(id: ID!): Pet
+    findDoctorById(id: ID!): Doctor
+    findOwnerById(id: ID!): PetOwner
+}
+
+type Mutation {
+    createDoctor(id: ID!, firstName: String!, lastName: String!, phone: Int!):Boolean
+    createOwner(id: ID!, firstName: String!, lastName: String!, phone: Int!):Boolean!
+    createPet(id: ID!, name: String!, doctor: DoctorInput!, owner: PetOwnerInput!):Boolean!
+    updateDoctor(id: ID!, firstName: String!, lastName: String!, phone: Int!):Boolean!
+    updateOwner(id: ID!, firstName: String!, lastName: String!, phone: Int!):Boolean!
+    updatePet(id: ID!, name: String!, doctor: DoctorInput!, owner: PetOwnerInput!):Boolean!
+    deleteDoctor(id: ID!, firstName: String!, lastName: String!, phone: Int!):Boolean!
+    deleteOwner(id: ID!, firstName: String!, lastName: String!, phone: Int!):Boolean!
+    deletePet(id: ID!, name: String!, doctor: DoctorInput!, owner: PetOwnerInput!):Boolean!
 }

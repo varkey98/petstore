@@ -1,10 +1,19 @@
+/* (C)2023 */
 package entities;
 
-import lombok.Data;
+import javax.persistence.MappedSuperclass;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@MappedSuperClass
+@Getter
+@Setter
+@MappedSuperclass
 public class Animal {
     String name;
-    Person owner;
- }
+
+    public Animal(String name) {
+        this.name = name;
+    }
+
+    public Animal() {}
+}

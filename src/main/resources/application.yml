@@ -30,7 +30,7 @@ voyager:
 
 logging:
   level:
-    org.hibernate.SQL: WARN
+    org.hibernate.SQL: TRACE
 decorator:
   datasource:
     p6spy: # logging SQL after binding parameters
