@@ -6,7 +6,7 @@ import repositories.AbstractHibernateDao;
 
 @Repository
 public class DoctorDao extends AbstractHibernateDao<Doctor> {
-    public DoctorDao() {
-        setClazz(Doctor.class);
-    }
+  public DoctorDao() {
+    setClazz(Doctor.class);
+  }
 }

@@ -21,8 +21,7 @@ public class Doctor extends Person implements Serializable {
 
   @Override
   public String toString() {
-    return
-        " firstName: "
+    return " firstName: "
         + super.getFirstName()
         + " lastName: "
         + super.getLastName()

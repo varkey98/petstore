@@ -7,11 +7,11 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class TestController {
 
-    @QueryMapping
-    public TestEntity init() {
-        System.out.println("I'm here!");
-        TestEntity ret = new TestEntity();
-        ret.setVal(5);
-        return ret;
-    }
+  @QueryMapping
+  public TestEntity init() {
+    System.out.println("I'm here!");
+    TestEntity ret = new TestEntity();
+    ret.setVal(5);
+    return ret;
+  }
 }

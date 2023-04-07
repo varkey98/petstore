@@ -6,7 +6,7 @@ import repositories.AbstractHibernateDao;
 
 @Repository
 public class PetOwnerDao extends AbstractHibernateDao<PetOwner> {
-    public PetOwnerDao() {
-        setClazz(PetOwner.class);
-    }
+  public PetOwnerDao() {
+    setClazz(PetOwner.class);
+  }
 }

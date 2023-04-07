@@ -3,7 +3,6 @@ package entities.impl;
 
 import entities.Person;
 import jakarta.persistence.*;
-
 import java.io.Serializable;
 import java.util.List;
 

@@ -3,9 +3,7 @@ package entities.impl;
 
 import entities.Animal;
 import jakarta.persistence.*;
-
 import java.io.Serializable;
-
 
 @Entity(name = "PET")
 public class Pet extends Animal implements Serializable {

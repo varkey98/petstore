@@ -20,7 +20,6 @@ public class Person {
   @Column(nullable = false)
   int phone;
 
-
   public Person(int id, String firstName, String lastName, int phone) {
     this.firstName = firstName;
     this.lastName = lastName;
@@ -49,11 +48,11 @@ public class Person {
   }
 
   public void setLastName(String name) {
-    this. lastName = name;
+    this.lastName = name;
   }
 
   public void setPhone(int phone) {
-    this. phone = phone;
+    this.phone = phone;
   }
 
   public Person() {}

@@ -1,50 +1,49 @@
 package schema;
 
 import entities.impl.Doctor;
-import lombok.Data;
-
 import java.util.ArrayList;
 
 public class DoctorInput {
-    int id;
-    String firstName;
-    String lastName;
+  int id;
+  String firstName;
+  String lastName;
 
-    public int getId() {
-        return id;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public String getFirstName() {
-        return firstName;
-    }
+  public String getFirstName() {
+    return firstName;
+  }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
 
-    public String getLastName() {
-        return lastName;
-    }
+  public String getLastName() {
+    return lastName;
+  }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
 
-    public int getPhone() {
-        return phone;
-    }
+  public int getPhone() {
+    return phone;
+  }
 
-    public void setPhone(int phone) {
-        this.phone = phone;
-    }
+  public void setPhone(int phone) {
+    this.phone = phone;
+  }
 
-    int phone;
+  int phone;
 
-    public Doctor getDoctorObject() {
-        return new Doctor(this.getId(), this.getFirstName(), this.getLastName(), this.getPhone(), new ArrayList<>());
-    }
+  public Doctor getDoctorObject() {
+    return new Doctor(
+        this.getId(), this.getFirstName(), this.getLastName(), this.getPhone(), new ArrayList<>());
+  }
 }
