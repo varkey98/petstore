@@ -20,6 +20,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web:3.0.5'
 	implementation 'org.springframework.boot:spring-boot-starter-graphql:3.0.5'
 	implementation 'org.springframework.data:spring-data-jpa:3.0.4'
+	implementation 'com.mysql:mysql-connector-j:8.0.32'
 	runtimeOnly 'com.h2database:h2:2.1.214'
 	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test:3.0.5'

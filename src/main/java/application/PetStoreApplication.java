@@ -52,10 +52,10 @@ public class PetStoreApplication {
 
   private Map<String, Object> dbSettings() {
     Map<String, Object> dbSettings = new HashMap<>();
-    dbSettings.put(Environment.URL, "jdbc:h2:mem:spring_hibernate_one_to_many");
-    dbSettings.put(Environment.USER, "sa");
-    dbSettings.put(Environment.PASS, "");
-    dbSettings.put(Environment.DRIVER, "org.h2.Driver");
+    dbSettings.put(Environment.URL, "jdbc:mysql://localhost:3306/petstore");
+    dbSettings.put(Environment.USER, "springuser");
+    dbSettings.put(Environment.PASS, "springUserPassword");
+    dbSettings.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
     dbSettings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
     dbSettings.put(Environment.SHOW_SQL, "true");
     dbSettings.put(Environment.HBM2DDL_AUTO, "create");
