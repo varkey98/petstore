@@ -1,6 +1,11 @@
 package schema;
 
 
+import entities.impl.Doctor;
+import entities.impl.PetOwner;
+
+import java.util.ArrayList;
+
 public class PetOwnerInput {
     int id;
     String firstName;
@@ -37,5 +42,9 @@ public class PetOwnerInput {
 
     public void setPhone(int phone) {
         this.phone = phone;
+    }
+
+    public PetOwner getOwnerObject() {
+        return new PetOwner(this.getId(), this.getFirstName(), this.getLastName(), this.getPhone(), new ArrayList<>());
     }
 }

@@ -1,6 +1,9 @@
 package schema;
 
+import entities.impl.Doctor;
 import lombok.Data;
+
+import java.util.ArrayList;
 
 public class DoctorInput {
     int id;
@@ -40,4 +43,8 @@ public class DoctorInput {
     }
 
     int phone;
+
+    public Doctor getDoctorObject() {
+        return new Doctor(this.getId(), this.getFirstName(), this.getLastName(), this.getPhone(), new ArrayList<>());
+    }
 }

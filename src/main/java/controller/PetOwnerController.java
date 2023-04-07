@@ -22,33 +22,33 @@ public class PetOwnerController {
     public boolean createOwner(@Argument Integer id, @Argument String firstName, @Argument String lastName, @Argument int phone){
         try {
             repository.create(new PetOwner(id, firstName, lastName, phone, new ArrayList<>()));
-            return true;
         } catch (Exception e){
             log.error("Unable to create owner",e);
             return false;
         }
+        return true;
     }
 
     @QueryMapping
     public PetOwner findOwnerById(@Argument int id){
-        return repository.findOne(id);
+        return repository.findOne(id).get();
     }
 
     @MutationMapping
     public boolean deleteOwner(@Argument int id){
         try {
             repository.deleteById(id);
-            return true;
         } catch (Exception e) {
             log.error("Unable to delete owner", e);
             return false;
         }
+        return true;
     }
 
     @MutationMapping
     public boolean updateOwner(@Argument int id, @Argument String firstName, @Argument String lastName, @Argument Integer phone) {
         try {
-            PetOwner owner = repository.findOne(id);
+            PetOwner owner = repository.findOne(id).get();
             if(firstName!=null) {
                 owner.setFirstName(firstName);
             }
@@ -58,10 +58,10 @@ public class PetOwnerController {
             if(phone!=null) {
                 owner.setPhone(phone);
             }
-            return true;
         }catch (Exception e) {
             log.error("Unable to update owner", e);
             return false;
         }
+        return true;
     }
 }

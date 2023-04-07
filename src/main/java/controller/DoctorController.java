@@ -23,33 +23,35 @@ public class DoctorController {
         try{
             Doctor doctor = new Doctor(id, firstName, lastName, phone, null);
             repository.create(doctor);
-            return true;
         } catch (Exception e) {
             log.error("Unable to create the doctor entity", e);
             return false;
         }
+        return true;
+
     }
 
     @QueryMapping
     public Doctor findDoctorById(@Argument int id) {
-        return  repository.findOne(id);
+        return  repository.findOne(id).get();
     }
 
     @MutationMapping
     public boolean deleteDoctor(@Argument int id) {
         try {
             repository.deleteById(id);
-            return true;
         } catch(Exception e) {
             log.error("Unable to delete the doctor entity", e);
             return false;
         }
+        return true;
+
     }
 
     @MutationMapping
     public boolean updateDoctor(@Argument Integer id, @Argument String firstName, @Argument String lastName, @Argument Integer phone){
         try {
-            Doctor doctor = repository.findOne(id);
+            Doctor doctor = repository.findOne(id).get();
             if(phone!=null) {
                 doctor.setPhone(phone);
             }
@@ -60,10 +62,10 @@ public class DoctorController {
                 doctor.setLastName(lastName);
             }
             repository.update(doctor);
-            return true;
         } catch(Exception e) {
             log.error("Unable to update the doctor entity", e);
             return false;
         }
+        return true;
     }
 }

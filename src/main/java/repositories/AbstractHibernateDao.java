@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 public abstract class AbstractHibernateDao<T extends  Serializable> {
     private Class<T> clazz;
@@ -20,11 +21,11 @@ public abstract class AbstractHibernateDao<T extends  Serializable> {
     }
 
     // API
-    public T findOne(final long id) {
+    public Optional<T> findOne(final long id) {
         Transaction transaction = getCurrentSession().beginTransaction();
         T entity =  (T) getCurrentSession().get(clazz, id);
         transaction.commit();
-        return entity;
+        return Optional.ofNullable(entity);
     }
 
     public List<T> findAll() {
@@ -34,12 +35,13 @@ public abstract class AbstractHibernateDao<T extends  Serializable> {
         return ret;
     }
 
-    public void create(final T entity) {
+    public T create(final T entity) {
         Preconditions.checkNotNull(entity);
         Transaction transaction = getCurrentSession().beginTransaction();
         getCurrentSession().merge(entity);
 //        sessionFactory.openSession().saveOrUpdate(entity);
         transaction.commit(); //either transaction or a new session every time
+        return entity;
     }
 
     public void update(final T entity) {
@@ -57,9 +59,9 @@ public abstract class AbstractHibernateDao<T extends  Serializable> {
     }
 
     public void deleteById(final long entityId) {
-        final T entity = findOne(entityId);
+        final Optional<T> entity = findOne(entityId);
         Preconditions.checkState(entity != null);
-        delete(entity);
+        entity.ifPresent(obj->delete(obj));
     }
 
     protected Session getCurrentSession() {
